@@ -28,7 +28,11 @@ public class App {
 	private static int contSolicitudes = 0;
 	private static int contAdmitidos = 0;
 	private static Scanner s = new Scanner(System.in);
-
+	
+	/**
+	 * mostrar el menu y llamar a la funcion dependiendo del caso
+	 * 
+	 */
 	public static void main(String[] args) {
 		String opcion;
 		do {
@@ -61,7 +65,9 @@ public class App {
 		} while (opcion != "7");
 
 	}
-
+	/** en esta funcion se compara la lista 
+	 * de solicitudes y ve si es que esta en la listaiscritos para ver si lo manda a listaadmitidos o listarechazados
+	 */
 	private static void procesarsolicitudes() {
 		for (int i=0; i<contSolicitudes;i++) {
 			if (buscar(i)) {
@@ -93,7 +99,13 @@ public class App {
 		
 			
 	}
-
+	
+	/**
+	 * en esta funcion ve si es que el nombre esta en la lista de nombres y apellidos incritos  
+	 * 
+	 * @param i indice que queremos buscar
+	 * @return un booleano indicando si se encontro o no el elemento
+	 */
 	private static boolean buscar(int i) {
 		String nombre=listaNombreSoli[i];
 		String apellido=listaApellidoSoli[i];
@@ -106,6 +118,10 @@ public class App {
 		return false;
 	}
 
+	/** en esta funcion abre el archivo alumnos y guarda la info en las listas de inscritos
+	 * y tambien abre el arxhivo solicitudes y guarda la info en las listas de solicitudes
+	 * 
+	 */
 	private static void procesarArchivos() {
 		try {
 			File arch=new File ("Alumnos.txt");   
