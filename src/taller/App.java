@@ -37,7 +37,7 @@ public class App {
 		String opcion;
 		do {
 			System.out.println(
-					"Sistema de control del grupo de poo" + "\n 1)Cargar archivos" + "\n 2)Procesar solicitudes");
+					"Sistema de control del grupo de poo" + "\n 1)Cargar archivos" + "\n 2)Procesar solicitudes"+"\n 3)ingresar manual");
 
 			System.out.print("Ingrese opcion");
 			opcion = s.nextLine();
@@ -56,6 +56,9 @@ public class App {
 				System.out.println(contRechazados);
 				
 				break;
+			case "3":
+				inscripcionmanual();
+				break;
 			default:
 				System.out.println("Opcion invalida");
 				break;
@@ -64,6 +67,112 @@ public class App {
 
 		} while (opcion != "7");
 
+	}
+	/**
+	 * esta funcion hace control ingresando manualmente si es que ingresa por rut o nombre
+	 * y tambien ve si hay espacio o no, si se acepta lo añade a admitidos y si no,a rechazados
+	 * 
+	 */
+	private static void inscripcionmanual() {
+		
+		System.out.println("Ingrese opcion 1 o 2 "
+				+ "\n1. Por nombre completo"
+				+ "\n2. Por rut");
+		
+		String opcion;
+		
+		do {
+			opcion=s.nextLine();
+		} while (!opcion.equals("1")&& (!opcion.equals("2")));
+		
+		if (opcion.equals("1")) {
+			System.out.println("Ingrese nombre y apellido");
+			System.out.print("nombre: ");
+			String nombre=s.nextLine();
+			System.out.print("apellido: ");
+			String apellido=s.nextLine();
+			
+			boolean encontrado =false;
+			
+			for (int i=0;i<contInscritos;i++) {
+				if (listaNombreInscr[i].equals(nombre) && listaApellidoInscr[i].equals(apellido)) {
+					if (contAdmitidos<100) {
+						listaNombreAdmi[contAdmitidos]=nombre;
+						listaApellidoAdmi[contAdmitidos]=apellido;
+						encontrado=true;
+						String rut,paralelo;
+						do {
+							System.out.println("Ingresa el rut: ");
+							rut=s.nextLine();
+							System.out.println("Ingresa el paralelo: ");
+							paralelo=s.nextLine();
+							
+						}while ((!paralelo.equals("C1")&&(!paralelo.equals("C2"))) || rut.equals(""));
+							
+						listaRutAdmi[contAdmitidos]=rut;
+						listaParaleloAdmi[contAdmitidos]=paralelo;
+						contAdmitidos++;
+					}else {
+						System.out.print("No hay espacio ups");
+					}
+				}
+			}
+			
+			if (!encontrado) {
+				listaNombreRechazado[contRechazados]=nombre;
+				listaApellidoRechazado[contRechazados]=apellido;
+				listaRutRechazado[contRechazados]="desconocido";
+				listaRazonRechazado[contRechazados]="No esta inscrito";
+				
+			}
+		
+		}else {
+			System.out.println("Ingrese rut");
+			System.out.print("rut: ");
+			String rut=s.nextLine();
+			
+			boolean encontrado =false;
+			for (int i=0;i<contInscritos;i++) {
+				if (listaRutInscr[i].equals(rut) ) {
+					if (contAdmitidos<100) {
+						listaRutAdmi[contAdmitidos]=rut;
+						encontrado=true;
+						String nombre,apellido,paralelo;
+						do {
+							System.out.println("Ingresa el nombre: ");
+							nombre=s.nextLine();
+							System.out.println("Ingresa el apellido: ");
+							apellido=s.nextLine();
+							System.out.println("Ingresa el paralelo: ");
+							paralelo=s.nextLine();
+						
+							
+						}while ((!paralelo.equals("C1")&&(!paralelo.equals("C2"))) || nombre.equals("")||apellido.equals(""));
+							
+						listaNombreAdmi[contAdmitidos]=nombre;
+						listaApellidoAdmi[contAdmitidos]=apellido;
+						listaParaleloAdmi[contAdmitidos]=paralelo;
+						
+						contAdmitidos++;
+					}else {
+						System.out.print("No hay espacio ups");
+					}
+				}
+				
+			}
+			if (!encontrado) {
+				listaNombreRechazado[contRechazados]="desconocido";
+				listaApellidoRechazado[contRechazados]="desconocido";
+				listaRutRechazado[contRechazados]=rut;
+				listaRazonRechazado[contRechazados]="No esta inscrito";
+			}
+		}
+		
+		
+		
+		
+		
+		
 	}
 	/** en esta funcion se compara la lista 
 	 * de solicitudes y ve si es que esta en la listaiscritos para ver si lo manda a listaadmitidos o listarechazados
