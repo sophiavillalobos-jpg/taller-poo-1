@@ -6,7 +6,7 @@ Sistema para el control de acceso y administración de un grupo de estudio de Pr
 
 ### **Integrantes**
 
-* **Nombre:** Sophia Villalobos | **RUT:** 21137863-8 | **Usuario GitHub:** SophiaVillalobos-GitH | **Carrera:** Ingeniería Civil en Computación e Informática
+* **Nombre:** Sophia Villalobos | **RUT:** 21137863-8 | **Usuario GitHub:** sophiavillalobos-jpg | **Carrera:** Ingeniería Civil en Computación e Informática
 
 \---
 
